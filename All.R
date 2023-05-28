@@ -101,8 +101,28 @@ print(paste("Number of columns:", num_cols))
 transmission_counts <- table(mtcars$am)
 print(transmission_counts)
 
+X <- data.frame(mtcars) 
+auto <- 0 
+man <- 0
+row <- nrow(X)  # Add this line to get the number of rows in the data frame
+
+for (i in 1:row) {
+  if (X[i, 9] == 1) {
+    auto <- auto + 1
+  } else if (X[i, 9] == 0) {
+    man <- man + 1
+  }
+}
+
+if (auto > man) {
+  print("auto > man")
+} else {
+  print("man > auto")
+}
+
+
 # Scatter plot of 'hp' vs 'weight'
-plot(mtcars$hp, mtcars$wt, xlab = "Horsepower", ylab = "Weight", main = "HP vs Weight")
+scatter.smooth(x = mtcars$hp, y = mtcars$wt, xlab = "hp", ylab = "weight", main = "hp vs wt", col = "blue")
 
 # Change 'am', 'cyl', and 'vs' to integer and store the new dataset as 'newmtc'
 newmtc <- mtcars
